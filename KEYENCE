@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEYENCE 第一屆校園大使計畫</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'CYGroteskKey';
+            src: url('CYGroteskV3Key.woff2') format('woff2');
+            font-weight: 100 900;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg:      #F7F2EA;
+            --white:   #FFFFFF;
+            --dark:    #1C1C1C;
+            --mid:     #555555;
+            --muted:   #999999;
+            --gold:    #C4956A;
+            --gold-dk: #A67C52;
+            --gold-bg: rgba(196,149,106,0.1);
+            --border:  #E5DDD4;
+            --shadow:  0 4px 24px rgba(0,0,0,0.07);
+        }
+
+        html { scroll-behavior: smooth; background: #EDE7DD; }
+        * {
+        font-family: -apple-system, 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;}
+
+        body {
+            font-family: -apple-system, 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            background: var(--bg);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 500px) {
+            body { box-shadow: 0 0 80px rgba(0,0,0,0.14); min-height: 100vh; }
+        }
+
+        /* ── CY Grotesk 套用範圍 ── */
+        .sec-label, .b-en, .cond-head, .deadline-tag, .tl-date,
+        .ft-sub, .ft-copy, .chip, .i-lbl, .nav-btn,
+        .btn-gold, .btn-ghost, .reg-btn, .c-btn,
+        .sn, .ms-num, .sl, .hero-meta, .hero-eye, .hero-scroll span {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        /* ══════════ NAV ══════════ */
+        #nav {
+            position: fixed; top: 0;
+            left: 50%; transform: translateX(-50%);
+            width: 100%; max-width: 480px; z-index: 999;
+            padding: 1.1rem 1.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: all .35s ease;
+        }
+        #nav.solid {
+            background: rgba(247,242,234,.96);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 0 var(--border);
+        }
+
+        /* Logo 切換邏輯 */
+        .nav-logo { display: flex; align-items: center; height: 22px; }
+        .nav-logo img { height: 22px; display: block; }
+        .logo-w { opacity: 1; }
+        .logo-d { display: none !important; }
+        #nav.solid .logo-w { display: none !important; }
+        #nav.solid .logo-d { display: block !important; }
+        #nav.solid .logo-w { display: none; }
+        #nav.solid .logo-d { display: block; }
+
+        .nav-btn {
+            font-size: .75rem; padding: .42rem 1.1rem;
+            border-radius: 100px; text-decoration: none;
+            letter-spacing: .8px; font-weight: 600;
+            transition: all .2s;
+            background: rgba(255,255,255,.15);
+            color: white; border: 1px solid rgba(255,255,255,.35);
+        }
+        #nav.solid .nav-btn {
+            background: var(--gold); color: white; border-color: var(--gold);
+        }
+        .nav-btn:hover { opacity: .82; transform: translateY(-1px); }
+
+        /* ══════════ HERO ══════════ */
+        #hero {
+            background:
+                radial-gradient(ellipse at 65% 35%, rgba(196,149,106,.2) 0%, transparent 55%),
+                linear-gradient(160deg, #1A0800 0%, #2C1500 25%, #1A1020 60%, #0D0A1A 100%);
+            min-height: 100svh;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center; padding: 7rem 2rem 5rem;
+            position: relative; overflow: hidden;
+        }
+        #hero::after {
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background: radial-gradient(ellipse at 25% 85%, rgba(196,149,106,.07), transparent 50%);
+        }
+
+        .hero-eye {
+       font-family: Roboto_Mono', serif;  /* ← 改這行 */
+       font-size: .68rem; letter-spacing: 5px; text-transform: uppercase;
+       color: var(--gold); margin-bottom: 1.5rem; position: relative; font-weight: 400;}
+
+        }
+        .hero-eye::before, .hero-eye::after { content: '—'; margin: 0 .6rem; opacity: .4; }
+
+        /* Be firstt */
+       .hero-be {
+    font-style: normal;  /* ← 改這裡，italic 換成 normal */
+    font-weight: 700;
+    font-size: clamp(2rem, 9vw, 3.2rem);
+    color: var(--gold);
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-bottom: .3rem;
+    position: relative;
+    opacity: .9;
+}
+
+        .hero-h1 {
+            font-size: clamp(3rem, 13vw, 5rem); font-weight: 700;
+            color: white; letter-spacing: 6px; line-height: 1.05;
+            margin-bottom: .5rem; position: relative;
+        }
+        .hero-en {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: .95rem; font-weight: 400; font-style: italic;
+            color: rgba(255,255,255,.4); letter-spacing: 3px;
+            margin-bottom: 2.5rem; position: relative;
+        }
+
+        .hero-vline {
+            width: 1px; height: 36px;
+            background: linear-gradient(to bottom, rgba(196,149,106,.6), transparent);
+            margin: 0 auto 2rem;
+        }
+
+        /* 粗體、更亮的 meta */
+        .hero-meta {
+         font-size: .85rem; color: rgba(255,255,255,.88);
+         letter-spacing: 2px; font-weight: 700;
+         display: flex; flex-wrap: wrap;        /* ← 加這個 */
+         align-items: center; justify-content: center;
+        gap: .8rem; margin-bottom: 3rem; position: relative;}
+
+        .hero-sep { width: 1px; height: 12px; background: rgba(255,255,255,.25); }
+
+        .hero-btns {
+            display: flex; flex-direction: column;
+            gap: .75rem; width: 100%; max-width: 300px; position: relative;
+        }
+        .btn-gold {
+            background: var(--gold); color: white;
+            padding: .95rem 1.5rem; border-radius: 100px;
+            text-decoration: none; font-size: .88rem;
+            letter-spacing: 1.5px; font-weight: 700;
+            font-family: 'CYGroteskKey', sans-serif;
+            transition: all .25s; text-align: center;
+        }
+        .btn-gold:hover { background: var(--gold-dk); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(196,149,106,.45); }
+        .btn-ghost {
+            background: transparent; color: rgba(255,255,255,.7);
+            padding: .95rem 1.5rem; border-radius: 100px;
+            text-decoration: none; font-size: .88rem; letter-spacing: 1.5px;
+            font-family: 'CYGroteskKey', sans-serif;
+            border: 1px solid rgba(255,255,255,.2); transition: all .25s; text-align: center;
+        }
+        .btn-ghost:hover { border-color: rgba(255,255,255,.55); color: white; }
+
+        .hero-scroll {
+            position: absolute; bottom: 2.5rem;
+            left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center;
+            gap: 6px; color: rgba(255,255,255,.3);
+            font-size: .58rem; letter-spacing: 3px; text-transform: uppercase;
+        }
+        .scroll-line {
+            width: 1px; height: 28px;
+            background: linear-gradient(to bottom, rgba(255,255,255,.3), transparent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+        /* ══════════ SHARED ══════════ */
+        .sec { padding: 4.5rem 1.8rem; background: var(--bg); }
+        .sec.w { background: var(--white); }
+        .sec-label {
+            font-size: .63rem; letter-spacing: 5px; text-transform: uppercase;
+            color: var(--gold); text-align: center; margin-bottom: .7rem; font-weight: 700;
+        }
+        .sec-title {
+            font-size: 1.9rem; font-weight: 700; color: var(--dark);
+            text-align: center; line-height: 1.25; margin-bottom: .7rem; letter-spacing: 1px;
+        }
+        .sec-sub {
+            font-size: .87rem; color: var(--mid);
+            text-align: center; line-height: 1.9; margin-bottom: 2.5rem;
+        }
+
+        /* ══════════ OVERVIEW ══════════ */
+        .info-card {
+            background: var(--white); border-radius: 18px;
+            overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--border);
+        }
+        .info-row {
+            display: flex; align-items: flex-start;
+            padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--border); gap: 1.2rem;
+        }
+        .info-row:last-child { border-bottom: none; }
+        .i-lbl {
+            font-size: .68rem; font-weight: 700; color: var(--gold);
+            letter-spacing: 2px; min-width: 48px; padding-top: 3px; white-space: nowrap;
+        }
+        .i-val { font-size: .88rem; color: var(--dark); line-height: 1.7; flex: 1; }
+        .i-val strong { font-weight: 700; }
+
+        .stat-strip {
+            display: grid; grid-template-columns: repeat(4,1fr);
+            margin-top: 1.5rem; background: var(--white);
+            border-radius: 14px; overflow: hidden; border: 1px solid var(--border);
+        }
+        .sc {
+            padding: 1.2rem .3rem; text-align: center;
+            border-right: 1px solid var(--border);
+        }
+        .sc:last-child { border-right: none; }
+        .sn {
+            font-size: 1.75rem; font-weight: 800;
+            color: var(--gold); display: block;
+            line-height: 1; margin-bottom: .3rem; letter-spacing: -0.5px;
+        }
+        .sl { font-size: .75rem; color: var(--muted); letter-spacing: .3px; font-weight: 500; }
+
+        /* ══════════ MISSIONS ══════════ */
+        .ms-item {
+            padding: 1.6rem 0; border-bottom: 1px solid var(--border);
+            display: flex; gap: 1.2rem; align-items: flex-start;
+        }
+        .ms-item:first-child { padding-top: 0; }
+        .ms-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .ms-num {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: var(--gold-bg); border: 1px solid rgba(196,149,106,.3);
+            display: flex; align-items: center; justify-content: center;
+            font-size: .88rem; font-weight: 800; color: var(--gold);
+            flex-shrink: 0; margin-top: 2px;
+        }
+        .ms-h { font-size: .95rem; font-weight: 700; color: var(--dark); margin-bottom: .4rem; }
+        .ms-p { font-size: .82rem; color: var(--mid); line-height: 1.8; margin-bottom: .7rem; }
+        .chip-row { display: flex; flex-wrap: wrap; gap: .35rem; }
+        .chip {
+            background: var(--gold-bg); color: var(--gold-dk);
+            border: 1px solid rgba(196,149,106,.25);
+            padding: .18rem .65rem; border-radius: 100px;
+            font-size: .68rem; letter-spacing: .3px; font-weight: 600;
+        }
+
+        /* ══════════ BENEFITS CAROUSEL ══════════ */
+        .c-outer { overflow: hidden; border-radius: 20px; }
+        .c-inner { display: flex; transition: transform .45s cubic-bezier(.25,.46,.45,.94); }
+        .c-slide { min-width: 100%; }
+        .b-box {
+            background: var(--bg); padding: 3rem 2rem 2.5rem;
+            text-align: center; border-radius: 20px;
+            box-shadow: var(--shadow); border: 1px solid var(--border);
+  min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+        }
+        .b-ico { font-size: 2.8rem; display: block; margin-bottom: 1rem; }
+        .b-en {
+            font-size: .65rem; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--gold); margin-bottom: .5rem; font-weight: 700;
+        }
+        .b-title { font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: .9rem; }
+        .b-desc { font-size: .85rem; color: var(--mid); line-height: 1.9; }
+
+        .c-nav {
+            display: flex; align-items: center;
+            justify-content: center; gap: 1.2rem; margin-top: 1.5rem;
+        }
+        .c-btn {
+            width: 38px; height: 38px; border-radius: 50%;
+            border: 1px solid var(--border); background: var(--white);
+            color: var(--mid); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; font-weight: 700; transition: all .2s; user-select: none;
+            line-height: 1;
+        }
+        .c-btn:hover { border-color: var(--gold); color: var(--gold); }
+        .c-dots { display: flex; gap: 5px; align-items: center; }
+        .c-dot {
+            height: 6px; background: var(--border);
+            border-radius: 100px; cursor: pointer; transition: all .3s; width: 6px;
+        }
+        .c-dot.on { background: var(--gold); width: 18px; }
+
+        /* ══════════ TIMELINE ══════════ */
+        .tl { position: relative; padding-left: 1.5rem; }
+        .tl::before {
+            content: ''; position: absolute;
+            left: 0; top: 8px; bottom: 8px; width: 1px;
+            background: linear-gradient(to bottom, var(--gold), rgba(196,149,106,.1));
+        }
+        .tl-item { position: relative; padding: 0 0 2rem 1.5rem; }
+        .tl-item:last-child { padding-bottom: 0; }
+        .tl-node {
+            position: absolute; left: -1.5rem; top: 5px;
+            width: 11px; height: 11px; border-radius: 50%;
+            background: var(--white); border: 2px solid var(--border); transition: all .3s;
+        }
+        .tl-item.now .tl-node {
+            background: var(--gold); border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(196,149,106,.2);
+        }
+        .tl-date {
+            font-size: .7rem; letter-spacing: 2px;
+            color: var(--gold); margin-bottom: .3rem; font-weight: 700;
+        }
+        .tl-name { font-size: .92rem; font-weight: 700; color: var(--dark); margin-bottom: .25rem; }
+        .tl-note { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+
+        /* ══════════ REGISTER ══════════ */
+        .cond-box {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 16px; padding: 1.6rem; margin-bottom: 2rem;
+        }
+        .cond-head {
+            font-size: .68rem; font-weight: 700; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+        }
+        .cond-list { list-style: none; }
+        .cond-list li {
+            display: flex; align-items: flex-start; gap: .75rem;
+            font-size: .85rem; color: var(--mid);
+            padding: .65rem 0; border-bottom: 1px solid var(--border); line-height: 1.6;
+        }
+        .cond-list li:last-child { border-bottom: none; }
+        .cd { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 8px; }
+
+        .deadline-tag {
+            display: inline-flex; align-items: center; gap: .4rem;
+            background: rgba(230,0,18,.07); color: #CC0010;
+            border: 1px solid rgba(230,0,18,.15);
+            padding: .35rem 1rem; border-radius: 100px;
+            font-size: .72rem; letter-spacing: .5px; margin-bottom: 1.2rem; font-weight: 700;
+        }
+        .reg-btn {
+            display: block; background: var(--gold); color: white;
+            padding: 1rem 1.5rem; border-radius: 100px;
+            text-decoration: none; text-align: center;
+            font-size: .88rem; letter-spacing: 1px; font-weight: 700;
+            transition: all .25s; margin-bottom: 1rem;
+        }
+        .reg-btn:hover { background: var(--gold-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,149,106,.35); }
+        .reg-note { font-size: .75rem; color: var(--muted); text-align: center; }
+        .reg-note a { color: var(--gold); text-decoration: none; }
+
+        /* ══════════ NOTES ══════════ */
+        .notes-ul { list-style: none; }
+        .notes-ul li {
+            display: flex; gap: .8rem; align-items: flex-start;
+            font-size: .84rem; color: var(--mid);
+            padding: .8rem 0; border-bottom: 1px solid var(--border); line-height: 1.75;
+        }
+        .notes-ul li:first-child { border-top: 1px solid var(--border); }
+        .nb { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 8px; }
+
+        /* ══════════ FAQ ══════════ */
+        .faq-group { display: flex; flex-direction: column; gap: .75rem; }
+        .faq-box {
+            background: var(--bg); border: 1px solid var(--border);
+            border-radius: 14px; overflow: hidden;
+        }
+        .faq-q {
+            padding: 1.1rem 1.3rem; font-size: .88rem; font-weight: 600; color: var(--dark);
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; gap: 1rem; user-select: none; transition: color .2s;
+        }
+        .faq-q:hover { color: var(--gold); }
+        .faq-ico {
+            font-family: 'CYGroteskKey', sans-serif;
+            font-size: 1.3rem; color: var(--gold); flex-shrink: 0;
+            transition: transform .3s; font-weight: 300; line-height: 1;
+        }
+        .faq-box.open .faq-ico { transform: rotate(45deg); }
+        .faq-a {
+            max-height: 0; overflow: hidden;
+            transition: max-height .4s ease, padding .3s;
+            font-size: .83rem; color: var(--mid); line-height: 1.85; padding: 0 1.3rem;
+        }
+        .faq-box.open .faq-a { max-height: 300px; padding-bottom: 1.2rem; }
+
+/* ══════════ FORM EMBED ══════════ */
+.form-wrap {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+}
+.form-wrap iframe {
+    display: block;
+    width: 100%;
+    min-height: 600px;
+    border: none;
+}
+
+        /* ══════════ FOOTER ══════════ */
+        footer {
+            background: #1A1A1A; color: rgba(255,255,255,.35);
+            padding: 2.5rem 1.8rem; text-align: center;
+        }
+        .ft-logo-img {
+            height: 24px; opacity: 0.65;
+            display: block; margin: 0 auto .9rem;
+        }
+        .ft-sub { font-size: .73rem; letter-spacing: 2px; margin-bottom: 1.5rem; font-weight: 500; }
+        .ft-copy {
+            font-size: .67rem; letter-spacing: .5px;
+            border-top: 1px solid rgba(255,255,255,.07);
+            padding-top: 1.2rem; line-height: 1.9;
+        }
+
+        /* ══════════ ANIMATION ══════════ */
+        .rv {
+            opacity: 0; transform: translateY(22px);
+            transition: opacity .65s ease, transform .65s ease;
+        }
+        .rv.in { opacity: 1; transform: translateY(0); }
+        .rv:nth-child(2) { transition-delay: .1s; }
+        .rv:nth-child(3) { transition-delay: .2s; }
+        .rv:nth-child(4) { transition-delay: .3s; }
+    </style>
+</head>
+<body>
+
+<!-- ① NAV -->
+<nav id="nav">
+    <div class="nav-logo">
+        <img src="logo-white.png" class="logo-w" alt="">
+        <img src="logo-dark.png"  class="logo-d" alt="">
+    </div>
+    <a href="#benefits" class="nav-btn">福利揭密 ↓</a>
+</nav>
+
+
+<!-- ② HERO -->
+<section id="hero">
+    <p class="hero-be">Be first.</p>
+    <h1 class="hero-h1">校園大使</h1>
+    <p class="hero-en">Campus Ambassador Program</p>
+    <div class="hero-vline"></div>
+    <div class="hero-meta">
+        <span>第一屆KEYENCE校園大使</span>
+        <div class="hero-sep"></div>
+    <span>即日起報名至10/16</span>
+     
+    </div>
+    <div class="hero-btns">
+        <a href="#register" class="btn-gold">立即報名 →</a>
+        <a href="#overview" class="btn-ghost">了解計畫詳情</a>
+    </div>
+    <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span>Details</span>
+    </div>
+</section>
+
+
+<!-- ③ OVERVIEW -->
+<section id="overview" class="sec w">
+    <p class="sec-label">Details</p>
+    <h2 class="sec-title">計畫概覽</h2>
+    <p class="sec-sub">成為 KEYENCE 校園代言人，讓你的影響力被看見！<br>與我們一起經營品牌，用創意與熱情，在校園創造更多可能✨</p>
+
+    <div class="info-card rv">
+        <div class="info-row">
+            <span class="i-lbl">計 畫</span>
+            <span class="i-val"><strong>KEYENCE 第一屆校園大使計畫</strong></span>
+        </div>
+        <div class="info-row">
+            <span class="i-lbl">任 期</span>
+            <span class="i-val">2026 年 11 月 6 日 — 2026 年 7 月 30 日</span>
+        </div>
+        <div class="info-row">
+            <span class="i-lbl">相 見 歡</span>
+            <span class="i-val"> 2026 年 11 月 6 日（務必參加！）</span>
+        </div>
+        <div class="info-row">
+            <span class="i-lbl">任 務</span>
+            <span class="i-val">社群宣傳 · 活動支援 · 內容製作 · 人才推薦</span>
+        </div>
+        <div class="info-row">
+            <span class="i-lbl">總獎金</span>
+            <span class="i-val"><strong>超過 NT$ 40 萬</strong>（依任務成效分配發放）</span>
+        </div>
+    </div>
+
+    <div class="stat-strip rv">
+ <div class="sc"><span class="sn">8個月</span><span class="sl">計畫長度</span></div>        
+<div class="sc"><span class="sn">7項</span><span class="sl">大使福利</span></div>
+     
+        <div class="sc"><span class="sn">4大</span><span class="sl">核心任務</span></div>
+        <div class="sc"><span class="sn">40萬</span><span class="sl">總獎金</span></div>
+    </div>
+</section>
+
+
+<!-- ④ MISSIONS -->
+<section id="missions" class="sec">
+    <p class="sec-label">Missions</p>
+    <h2 class="sec-title">四大任務</h2>
+    <p class="sec-sub">不只是完成任務，更是在打造更厲害的自己🚀</p>
+
+    <div class="ms-item rv">
+        <div class="ms-num">1</div>
+        <div>
+            <p class="ms-h">協助校園活動宣傳與曝光</p>
+            <p class="ms-p">KEYENCE 舉辦招募活動時，透過社群平台宣傳！<br>＃我們看重的不只是流量，更是內容和用心程度✨</p>
+            <div class="chip-row">
+                <span class="chip">Instagram</span>
+                <span class="chip">Dcard</span>
+                <span class="chip">臉書校版</span>
+                <span class="chip">季度獎金</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="ms-item rv">
+        <div class="ms-num">2</div>
+        <div>
+            <p class="ms-h">線下招募活動執行</p>
+            <p class="ms-p">參與招募活動，讓更多人認識 KEYENCE！<br>＃每場活動都有豐厚獎金，絕對不虧待🔥</p>
+            <div class="chip-row">
+                <span class="chip">Yourator博覽會</span>
+                <span class="chip">104博覽會</span>
+                <span class="chip">校園博覽會</span>
+                <span class="chip">活動獎勵金</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="ms-item rv">
+        <div class="ms-num">3</div>
+        <div>
+            <p class="ms-h">參與社群內容經營與影音製作</p>
+            <p class="ms-p">協助經營KEYENCE的官方IG，展現你的超能力！<br>＃我們需要你源源不絕的創意和美感🚀</p>
+            <div class="chip-row">
+                <span class="chip">短影音製作</span>
+                <span class="chip">圖文貼文</span>
+                <span class="chip">官方 IG</span>
+                <span class="chip">展現創意</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="ms-item rv">
+        <div class="ms-num">4</div>
+        <div>
+            <p class="ms-h">推薦潛在人才投遞履歷</p>
+            <p class="ms-p">只要你有看到適合的人，就推薦給我們吧！<br>＃年薪百萬的好職缺，吸引人的好條件👀</p>
+            <div class="chip-row">
+                <span class="chip">招募活動</span>
+                <span class="chip">人才推薦</span>
+                <span class="chip">獎金無上限</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ⑤ BENEFITS CAROUSEL -->
+<section id="benefits" class="sec w">
+    <p class="sec-label">Benefits</p>
+    <h2 class="sec-title">大使福利</h2>
+    <p class="sec-sub">加入後你將獲得</p>
+
+    <div class="c-outer">
+        <div class="c-inner" id="ci">
+            <div class="c-slide"><div class="b-box">
+                <span class="b-ico">💰</span>
+                <p class="b-en">Incentives</p>
+                <h3 class="b-title">總獎金超過 40 萬</h3>
+                <p class="b-desc">豐厚的獎金、明確的制度，不會讓你看的到吃不到！</p>
+            </div></div>
+            <div class="c-slide"><div class="b-box">
+                <span class="b-ico">📸</span>
+                <p class="b-en">Professional Headshots</p>
+                <h3 class="b-title">免費專業形象照</h3>
+                <p class="b-desc">專業形象照一次到位，打造履歷與社群最佳門面！</p>
+            </div></div>
+            <div class="c-slide"><div class="b-box">
+                <span class="b-ico">🎫</span>
+                <p class="b-en">Interview Fast Track</p>
+                <h3 class="b-title">KEYENCE 面試直通卡</h3>
+                <p class="b-desc">挑戰年薪百萬職缺的最佳起點<br>讓你在競爭激烈的招募中搶先一步！</p>
+            </div></div>
+            <div class="c-slide"><div class="b-box">
+                <span class="b-ico">🚆</span>
+                <p class="b-en">Transportation Allowance</p>
+                <h3 class="b-title">活動交通費補助</h3>
+                <p class="b-desc">參與活動提供高鐵交通補助，讓你無負擔出席每場活動！</p>
+            </div></div>
+            <div class="c-slide"><div class="b-box">
+                <span class="b-ico">🍽️</span>
+                <p class="b-en">Regular Gatherings</p>
+                <h3 class="b-title">大使聚餐</h3>
+                <p class="b-desc">指定時間聚會聚餐，公司請客！<br>讓你認識來自各校的優秀夥伴，建立跨校園的珍貴人脈！</p>
+            </div></div>
+            <div class="c-slide"><div class="b-box">
+                <span class="b-ico">📱</span>
+                <p class="b-en">Social Media Training</p>
+                <h3 class="b-title">社群經營專業課程</h3>
+                <p class="b-desc">專業講師教學社群媒體經營，學習短影音製作、文案撰寫，讓你的作品集更加亮眼。</p>
+            </div></div>
+ <div class="c-slide"><div class="b-box">
+                <span class="b-ico">💰</span>
+                <p class="b-en">Career Exploration</p>
+                <h3 class="b-title">搶先認識百萬年薪職涯</h3>
+                <p class="b-desc">走進科技業第一線！與主管面對面交流、參與業務外出行程，親身體驗高績效團隊的工作日常。</p>
+            </div></div>
+        </div>
+    </div>
+
+    <div class="c-nav">
+        <button class="c-btn" id="cprev">‹</button>
+        <div class="c-dots" id="cdots">
+            <div class="c-dot on" data-i="0"></div>
+            <div class="c-dot"    data-i="1"></div>
+            <div class="c-dot"    data-i="2"></div>
+            <div class="c-dot"    data-i="3"></div>
+            <div class="c-dot"    data-i="4"></div>
+            <div class="c-dot"    data-i="5"></div>
+            <div class="c-dot"    data-i="6"></div>
+        </div>
+        <button class="c-btn" id="cnext">›</button>
+    </div>
+</section>
+
+
+<!-- ⑥ TIMELINE -->
+<section id="timeline" class="sec">
+    <p class="sec-label">Timeline</p>
+    <h2 class="sec-title">計畫時程</h2>
+    <p class="sec-sub">從報名到結業，每個重要里程碑</p>
+
+    <div class="tl">
+        <div class="tl-item now rv">
+            <div class="tl-node"></div>
+            <p class="tl-date">2026.09.02 — 10.16</p>
+            <p class="tl-name">📝 開放報名</p>
+            <p class="tl-note">填寫線上報名表，並等待面試通知</p>
+        </div>
+        <div class="tl-item rv">
+            <div class="tl-node"></div>
+            <p class="tl-date">2026.10.23</p>
+            <p class="tl-name">📋 錄取名單公告</p>
+            <p class="tl-note">公布通過審核之校園大使名單，並發送通知信件</p>
+        </div>
+        <div class="tl-item rv">
+            <div class="tl-node"></div>
+            <p class="tl-date">2026.11.06</p>
+            <p class="tl-name">🎉 相見歡</p>
+            <p class="tl-note">計畫啟動 · 社群課程  · 公司分享 · 晚餐</p>
+        </div>
+        <div class="tl-item rv">
+            <div class="tl-node"></div>
+            <p class="tl-date">2026.12.12</p>
+            <p class="tl-name">🏃 KEYSPORT</p>
+            <p class="tl-note">參與年度活動，感受Work Hard, Play Hard的氛圍</p>
+        </div>
+        <div class="tl-item rv">
+            <div class="tl-node"></div>
+            <p class="tl-date">2026.01</p>
+            <p class="tl-name">🎯 Yourator 博覽會</p>
+            <p class="tl-note">參與 Yourator 職涯博覽會，協助蒐集履歷</p>
+        </div>
+        <div class="tl-item rv">
+            <div class="tl-node"></div>
+            <p class="tl-date">2026.03-05</p>
+            <p class="tl-name">🌸 校園春季招募</p>
+            <p class="tl-note">參與春季各校校園招募活動執行與宣傳</p>
+        </div>
+        <div class="tl-item rv">
+            <div class="tl-node"></div>
+            <p class="tl-date">2026.06.19</p>
+            <p class="tl-name">📰 104 博覽會</p>
+            <p class="tl-note">參與 104 人力銀行職涯博覽會，結束一起享用晚餐</p>
+        </div>
+        <div class="tl-item rv">
+            <div class="tl-node"></div>
+            <p class="tl-date">2026.06</p>
+            <p class="tl-name">🎓 結業式</p>
+            <p class="tl-note">計畫正式結束 · 頒發結業證書·期待下次再見！</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- ⑦ REGISTER -->
+<section id="register" class="sec w">
+    <p class="sec-label">Register</p>
+    <h2 class="sec-title">立即報名Be first</h2>
+    <p class="sec-sub">成為 KEYENCE 第一屆校園大使</p>
+
+    <div class="cond-box rv">
+        <p class="cond-head">申請條件</p>
+        <ul class="cond-list">
+            <li><div class="cd"></div>大專院校學生（大二以上）</li>
+            <li><div class="cd"></div>認同 KEYENCE 的企業文化與價值觀</li>
+            <li><div class="cd"></div>對經營社群媒體有熱情與興趣</li>
+            <li><div class="cd"></div>外向、喜歡與人互動交流</li>
+            <li><div class="cd"></div>有短影音、社群經營或課外活動經驗者加分<br>#沒有也沒關係，來嘗試看看!</li>
+               
+        </ul>
+    </div>
+
+    <div style="text-align:center;" class="rv">
+        <div class="deadline-tag">⏰ 報名截止 2026 年 10 月 16 日</div><br>
+        <div class="form-wrap">
+    <iframe 
+        src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=XaNby1Yg60GNibCtDpPRMWIJBhvFcpRKkf6yPjdO1KxUODRCSTFBMk04NElZOEFXQVZBU0NSMEtNVS4u&embed=true"
+        frameborder="0"
+        marginwidth="0"
+        marginheight="0"
+        allowfullscreen
+        webkitallowfullscreen
+        mozallowfullscreen
+        msallowfullscreen>
+    </iframe>
+</div>
+        <p class="reg-note">
+            有問題？歡迎 IG 私訊
+            <a href="https://instagram.com/keyence_taiwan">@keyence_taiwan</a>
+        </p>
+    </div>
+</section>
+
+
+<!-- ⑧ NOTES -->
+<section id="notes" class="sec">
+    <p class="sec-label">Notes</p>
+    <h2 class="sec-title">注意事項</h2>
+
+    <ul class="notes-ul rv">
+        <li><div class="nb"></div>填寫之個人資料僅用於招募及行政作業，不外洩或用於其他用途。</li>
+        <li><div class="nb"></div>限本國籍全台大專院校在學學生（大二以上優先），不限科系。</li>
+        <li><div class="nb"></div>期待你與我們一同完成校園品牌旅程！報名前請確認可全程參與。</li>
+        <li><div class="nb"></div>部分活動將於平日或假日舉辦，報名前請衡量自身學業負擔。</li>
+        <li><div class="nb"></div>獎勵將依計畫辦法發放，實際金額與發放時間依官方公告為準。</li>
+        <li><div class="nb"></div>若提供不實資訊或影響計畫運作， KEYENCE 保有取消資格之權利。</li>
+        <li><div class="nb"></div> KEYENCE 保留隨時修改、調整計畫內容之權利，以最新公告為準。</li>
+    </ul>
+</section>
+
+
+<!-- ⑨ FAQ -->
+<section id="faq" class="sec w">
+    <p class="sec-label">FAQ</p>
+    <h2 class="sec-title">常見問題</h2>
+
+    <div class="faq-group rv">
+        <div class="faq-box">
+            <div class="faq-q">會需要常常進公司嗎？<span class="faq-ico">+</span></div>
+            <div class="faq-a">目前規劃僅有11/6相見歡需要到總部報到，其他並無硬性要求。</div>
+        </div>
+        <div class="faq-box">
+            <div class="faq-q">沒有社群經驗可以申請嗎？<span class="faq-ico">+</span></div>
+            <div class="faq-a">完全可以！我們會安排專業社群課程從零帶你上手。<BR>有相關經驗者加分，但熱情才是最重要的條件。</div>
+        </div>
+        <div class="faq-box">
+            <div class="faq-q">校園大使需要我花多少時間？<span class="faq-ico">+</span></div>
+            <div class="faq-a">每月各組需完成社群內容產出，並參與部分線下活動與交流行程。11月將安排半天的業務外出體驗，2027年3至4月為校園招募旺季，將有較多活動參與需求，還有其他行程請見上方的計畫時程。我們期待每位錄取的大使都能完成完整的旅程，因此請在報名前審慎評估自身時間規劃，避免中途退出影響團隊運作。</div>
+        </div>
+        <div class="faq-box">
+            <div class="faq-q">獎金如何計算與發放？<span class="faq-ico">+</span></div>
+            <div class="faq-a">社群貼文每季結算、活動支援於活動結束後依規定日期給付、推薦獎金依候選人通過各面試關卡後分階段給付。獎金統一匯款至華南銀行帳戶，並於發放前提供完整明細。</div>
+        </div>
+        <div class="faq-box">
+            <div class="faq-q">非台北的學生可以申請嗎？<span class="faq-ico">+</span></div>
+            <div class="faq-a">完全可以！外縣市大使參與活動時可獲全額高鐵交通補助，不用擔心交通問題。</div>
+        </div>
+        <div class="faq-box">
+            <div class="faq-q">完成計畫後可以獲得什麼證明？<span class="faq-ico">+</span></div>
+            <div class="faq-a">完成結業規定的大使將獲得官方結業證書，可正式列入履歷。同時享有 KEYENCE 面試直通卡優先資格，讓你離 KEYENCE 更進一步。</div>
+        </div>
+        <div class="faq-box">
+            <div class="faq-q">大使本人也可以應徵 KEYENCE 嗎？<span class="faq-ico">+</span></div>
+            <div class="faq-a">當然可以！大使本人也可透過正常管道申請，並享有面試直通卡優先資格。注意：推薦自己不計入推薦獎金制度。</div>
+        </div>
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+    <img src="logo-white.png" class="ft-logo-img" alt="KEYENCE">
+    <p class="ft-sub">第一屆校園大使計畫</p>
+    <p class="ft-copy">© 2026 KEYENCE Taiwan Co., Ltd.<br>從校園開始發光，為未來搶先一步</p>
+</footer>
+
+
+<script>
+    /* NAV */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('solid', window.scrollY > 60);
+    }, { passive: true });
+
+    /* 進場動畫 */
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+    /* 輪播 */
+    const ci   = document.getElementById('ci');
+    const dots = document.querySelectorAll('.c-dot');
+    let cur = 0, N = 7;
+
+    function goTo(n) {
+        cur = ((n % N) + N) % N;
+        ci.style.transform = `translateX(-${cur * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('on', i === cur));
+    }
+
+    document.getElementById('cprev').onclick = () => goTo(cur - 1);
+    document.getElementById('cnext').onclick = () => goTo(cur + 1);
+    dots.forEach(d => d.onclick = () => goTo(+d.dataset.i));
+    setInterval(() => goTo(cur + 1), 4500);
+
+    let sx = 0;
+    ci.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+    ci.addEventListener('touchend',   e => {
+        const dx = e.changedTouches[0].clientX - sx;
+        if (Math.abs(dx) > 40) goTo(cur + (dx < 0 ? 1 : -1));
+    });
+
+    /* FAQ */
+    document.querySelectorAll('.faq-q').forEach(q => {
+        q.addEventListener('click', () => {
+            const box = q.parentElement;
+            const was = box.classList.contains('open');
+            document.querySelectorAll('.faq-box').forEach(b => b.classList.remove('open'));
+            if (!was) box.classList.add('open');
+        });
+    });
+</script>
+
+</body>
+</html>
