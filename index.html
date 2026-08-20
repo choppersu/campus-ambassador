@@ -495,7 +495,7 @@
 <section id="overview" class="sec w">
     <p class="sec-label">Details</p>
     <h2 class="sec-title">計畫概覽</h2>
-    <p class="sec-sub">成為 KEYENCE 校園代言人，讓你的影響力被看見！<br>與我們一起經營品牌，用創意與熱情，在校園創造更多可能✨</p>
+    <p class="sec-sub">成為 KEYENCE 校園代言人，讓你的影響力被看見！<br>與我們一起打造雇主品牌，用創意與熱情，在校園創造更多可能✨</p>
 
     <div class="info-card rv">
         <div class="info-row">
@@ -545,7 +545,7 @@
                 <span class="chip">Instagram</span>
                 <span class="chip">Dcard</span>
                 <span class="chip">臉書校版</span>
-                <span class="chip">季度獎金</span>
+                <span class="chip">自由宣傳</span>
             </div>
         </div>
     </div>
@@ -568,7 +568,7 @@
         <div class="ms-num">3</div>
         <div>
             <p class="ms-h">參與社群內容經營與影音製作</p>
-            <p class="ms-p">協助經營KEYENCE的官方IG，展現你的超能力！<br>＃我們需要你源源不絕的創意和美感🚀</p>
+            <p class="ms-p">協助經營 KEYENCE 的官方IG，展現你的超能力！<br>＃我們需要你源源不絕的創意和美感🚀</p>
             <div class="chip-row">
                 <span class="chip">短影音製作</span>
                 <span class="chip">圖文貼文</span>
@@ -604,7 +604,7 @@
             <div class="c-slide"><div class="b-box">
                 <span class="b-ico">💰</span>
                 <p class="b-en">Incentives</p>
-                <h3 class="b-title">總獎金超過 40 萬</h3>
+                <h3 class="b-title">計畫總獎金超過 40 萬</h3>
                 <p class="b-desc">豐厚的獎金、明確的制度，不會讓你看的到吃不到！</p>
             </div></div>
             <div class="c-slide"><div class="b-box">
@@ -806,7 +806,7 @@
         </div>
         <div class="faq-box">
             <div class="faq-q">完成計畫後可以獲得什麼證明？<span class="faq-ico">+</span></div>
-            <div class="faq-a">完成結業規定的大使將獲得官方結業證書，可正式列入履歷。同時享有 KEYENCE 面試直通卡優先資格，讓你離 KEYENCE 更進一步。</div>
+            <div class="faq-a">完成結業規定的大使將獲得官方結業證書，可正式列入履歷。同時享有 KEYENCE fast pass 優先資格，讓你離 KEYENCE 更進一步。</div>
         </div>
         <div class="faq-box">
             <div class="faq-q">大使本人也可以應徵 KEYENCE 嗎？<span class="faq-ico">+</span></div>
@@ -851,7 +851,6 @@
     document.getElementById('cprev').onclick = () => goTo(cur - 1);
     document.getElementById('cnext').onclick = () => goTo(cur + 1);
     dots.forEach(d => d.onclick = () => goTo(+d.dataset.i));
-    setInterval(() => goTo(cur + 1), 4500);
 
     let sx = 0;
     ci.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
